@@ -1,0 +1,13 @@
+Django>=5.0
+djangorestframework
+djangorestframework-simplejwt
+psycopg2-binary
+python-dotenv
+drf-spectacular
+django-filter
+django-cors-headers
+
+# Testing
+pytest
+pytest-django
+factory-boy
