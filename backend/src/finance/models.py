@@ -1,10 +1,9 @@
-# finance/models.py
 from django.db import models
-from django.conf import settings
-from uuid import uuid4
+from core.models.mixins.deleted_mixin import DeletedMixin
+from core.models.mixins.timestampable_mixin import TimestampableMixin
 
 
-class Transaction(models.Model):
+class Transaction(TimestampableMixin, DeletedMixin):
     class Type(models.TextChoices):
         INCOME = "INCOME", "Entrada"
         EXPENSE = "EXPENSE", "Saida"
@@ -16,24 +15,23 @@ class Transaction(models.Model):
         PAYROLL = "PAYROLL", "Folha de Pagamento"
 
     class PaymentMethod(models.TextChoices):
-        PIX = "PIX", "PIX"
         CASH = "CASH", "Dinheiro"
+        PIX = "PIX", "PIX"
         CARD = "CARD", "Cartão"
 
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     type = models.CharField(max_length=10, choices=Type.choices)
     category = models.CharField(max_length=30, choices=Category.choices)
     payment_method = models.CharField(max_length=10, choices=PaymentMethod.choices, blank=True)
-    description = models.CharField(max_length=300)
-    value = models.DecimalField(max_digits=12, decimal_places=2)
-    date = models.DateField()
-    created_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+    customer = models.ForeignKey(
+        "customers.Customer",
         on_delete=models.SET_NULL,
         null=True,
+        blank=True,
         related_name="transactions"
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    description = models.CharField(max_length=300)
+    value = models.DecimalField(max_digits=12, decimal_places=2)
+    date = models.DateField(auto_now_add=True)
 
     class Meta:
         db_table = "transactions"
