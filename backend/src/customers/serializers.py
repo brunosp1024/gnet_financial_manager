@@ -14,6 +14,7 @@ class CustomerSerializer(PersonSerializer):
             "start_date",
             "birthday",
             "observations",
+            "is_active",
             "created_at",
             "created_by",
             "updated_at",
