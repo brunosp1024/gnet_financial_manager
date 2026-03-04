@@ -1,8 +1,11 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from .models import User
 
 
-@admin.register(User)
-class UserAdmin(DjangoUserAdmin):
-	pass
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'email')
+    list_display_links = ('first_name', 'last_name')
+    search_fields = ('first_name', 'last_name', 'email')
+    list_per_page = 20
+
+admin.site.register(User, UserAdmin)
