@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from backend.src.core.models.mixins.audit_serializer_mixin import AuditSerializerMixin
+from core.models.mixins.audit_serializer_mixin import AuditSerializerMixin
 from utils.validators import validate_cpf as validate_cpf_util
 
 
@@ -8,12 +8,12 @@ class PersonSerializer(AuditSerializerMixin):
         if not value:
             return value
 
-        cpf = validate_cpf_util(value)
+        validate_cpf_util(value)
 
-        qs = self.Meta.model.objects.filter(cpf=cpf)
+        qs = self.Meta.model.objects.filter(cpf=value)
         if self.instance:
             qs = qs.exclude(pk=self.instance.pk)
         if qs.exists():
             raise serializers.ValidationError('CPF já cadastrado no sistema.')
 
-        return cpf
+        return value

@@ -11,12 +11,12 @@ class TransactionSerializer(AuditSerializerMixin):
     class Meta:
         model  = Transaction
         fields = [
+            "id",
             "type",
             "category",
             "payment_method",
             "description",
             "value",
-            "date",
             "customer_id",
             "customer_name",
             "created_by",
