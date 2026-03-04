@@ -107,3 +107,13 @@ STATIC_URL = 'static/'
 
 # Define custom user model
 AUTH_USER_MODEL = 'users.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'GNet API',
+    'DESCRIPTION': 'Documentação dos endpoints da API',
+    'VERSION': '1.0.0',
+}
