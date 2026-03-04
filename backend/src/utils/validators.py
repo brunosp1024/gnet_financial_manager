@@ -1,11 +1,11 @@
-from django.core.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError
 
 
 def validate_cpf(value: str) -> None:
     """
     Valida um CPF sem máscara.
     Aceita `None` ou string vazia (não valida nesses casos).
-    Levanta `django.core.exceptions.ValidationError` se inválido.
+    Levanta `rest_framework.exceptions.ValidationError` se inválido.
     """
     if value is None:
         return

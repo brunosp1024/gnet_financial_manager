@@ -23,9 +23,8 @@ class UserSerializer(AuditSerializerMixin):
         read_only_fields = ["created_at", "created_by", "updated_at", "updated_by"]
 
     def create(self, validated_data):
-        current_user = self._current_user()
-        validated_data["created_by"] = current_user
-        validated_data["updated_by"] = current_user
+        validated_data["created_by"] = self._current_user()
+        validated_data["updated_by"] = self._current_user()
         return User.objects.create_user(**validated_data)
 
     def update(self, instance, validated_data):
