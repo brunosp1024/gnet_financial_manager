@@ -29,9 +29,8 @@ class Transaction(TimestampableMixin, DeletedMixin):
         blank=True,
         related_name="transactions"
     )
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=300, blank=True, default="")
     value = models.DecimalField(max_digits=12, decimal_places=2)
-    date = models.DateField(auto_now_add=True)
 
     class Meta:
         db_table = "transactions"

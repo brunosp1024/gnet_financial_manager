@@ -113,7 +113,17 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'GNet API',
-    'DESCRIPTION': 'Documentação dos endpoints da API',
-    'VERSION': '1.0.0',
+    'TITLE':       "GlobalNet'I API",
+    'DESCRIPTION': 'Sistema de gestão financeira do provedor',
+    'VERSION':     '1.0.0',
+    'SECURITY': [{'bearerAuth': []}],
+    'COMPONENTS': {
+        'securitySchemes': {
+            'bearerAuth': {
+                'type':   'http',
+                'scheme': 'bearer',
+                'bearerFormat': 'JWT',
+            }
+        }
+    }
 }
