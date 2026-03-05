@@ -4,26 +4,26 @@ from django.db.models import Count, Sum
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
+from rest_framework.permissions import IsAuthenticated
+from core.permissions import GroupPermission
 from .models import Transaction
 from .serializers import TransactionSerializer
 
 
 class TransactionViewSet(ModelViewSet):
     serializer_class = TransactionSerializer
-    permission_classes = [IsAuthenticated, DjangoModelPermissions]
+    permission_classes = [IsAuthenticated, GroupPermission]
     search_fields = ['description']
     ordering_fields = ['value', 'category', 'type', 'created_at']
     ordering = ['-created_at']
 
     def get_queryset(self):
         qs = Transaction.objects.select_related('created_by', 'updated_by')
-        p  = self.request.query_params
-        
-        if p.get('type'): qs = qs.filter(type=p['type'])
-        if p.get('category'): qs = qs.filter(category=p['category'])
-        if p.get('date_from'): qs = qs.filter(created_at__gte=p['date_from'])
-        if p.get('date_to'): qs = qs.filter(created_at__lte=p['date_to'])
+        qp  = self.request.query_params
+        if qp.get('type'): qs = qs.filter(type=qp['type'])
+        if qp.get('category'): qs = qs.filter(category=qp['category'])
+        if qp.get('date_from'): qs = qs.filter(created_at__date__gte=qp['date_from'])
+        if qp.get('date_to'): qs = qs.filter(created_at__date__lte=qp['date_to'])
 
         return qs
     

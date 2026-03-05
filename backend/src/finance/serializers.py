@@ -6,6 +6,9 @@ from finance.models import Transaction
 class TransactionSerializer(AuditSerializerMixin):
     customer_id = serializers.CharField(source="customer.id", required=False, allow_null=True)
     customer_name = serializers.CharField(source="customer.name", read_only=True)
+    type = serializers.ChoiceField(choices=Transaction.Type.choices)
+    category = serializers.ChoiceField(choices=Transaction.Category.choices)
+    payment_method = serializers.ChoiceField(choices=Transaction.PaymentMethod.choices)
 
 
     class Meta:
@@ -33,7 +36,7 @@ class TransactionSerializer(AuditSerializerMixin):
         if customer_id is not None:
             validated_data["customer_id"] = customer_id
 
-        return super().create(**validated_data)
+        return super().create(validated_data)
 
     def update(self, instance, validated_data):
         customer_data = validated_data.pop("customer", None)
