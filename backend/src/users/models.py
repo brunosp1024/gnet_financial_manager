@@ -1,13 +1,16 @@
-from django.contrib.auth.models import AbstractUser
-from core.models.mixins.deleted_mixin import CustomManager, DeletedMixin
+from django.contrib.auth.models import AbstractUser, UserManager
+from core.models.mixins.deleted_mixin import DeletedMixin
 from core.models.mixins.timestampable_mixin import TimestampableMixin
-from django.db import models
 
+
+class ActiveUserManager(UserManager):
+    def get_queryset(self):
+        return super().get_queryset().filter(deleted_at__isnull=True)
 
 class User(AbstractUser, TimestampableMixin, DeletedMixin):
 
-    objects = CustomManager()
-    dm_objects = models.Manager()
+    objects = ActiveUserManager()
+    dm_objects = UserManager()
 
     class Meta:
         db_table = "users"
