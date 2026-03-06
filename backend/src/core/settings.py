@@ -102,7 +102,6 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
@@ -122,8 +121,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
-    'DEFAULT_PAGINATION_CLASS':  'core.pagination.StandardPagination',
-    'PAGE_SIZE': 20,
+    'DEFAULT_PAGINATION_CLASS':  'core.pagination.standard_pagination.StandardPagination',
 }
 
 SPECTACULAR_SETTINGS = {
