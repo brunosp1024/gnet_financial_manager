@@ -2,7 +2,6 @@ import pytest
 from rest_framework.test import APIRequestFactory
 from finance.serializers import TransactionSerializer
 from finance.tests.factories import TransactionFactory
-from customers.tests.factories import CustomerFactory
 
 
 def make_request(user):

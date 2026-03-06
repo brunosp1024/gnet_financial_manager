@@ -20,10 +20,14 @@ class TransactionViewSet(ModelViewSet):
     def get_queryset(self):
         qs = Transaction.objects.select_related('created_by', 'updated_by')
         qp  = self.request.query_params
-        if qp.get('type'): qs = qs.filter(type=qp['type'])
-        if qp.get('category'): qs = qs.filter(category=qp['category'])
-        if qp.get('date_from'): qs = qs.filter(created_at__date__gte=qp['date_from'])
-        if qp.get('date_to'): qs = qs.filter(created_at__date__lte=qp['date_to'])
+        if qp.get('type'):
+            qs = qs.filter(type=qp['type'])
+        if qp.get('category'):
+            qs = qs.filter(category=qp['category'])
+        if qp.get('date_from'):
+            qs = qs.filter(created_at__date__gte=qp['date_from'])
+        if qp.get('date_to'):
+            qs = qs.filter(created_at__date__lte=qp['date_to'])
 
         return qs
     

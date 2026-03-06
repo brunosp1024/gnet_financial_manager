@@ -2,8 +2,11 @@ import pytest
 from users.tests.factories import UserFactory
 
 
-LIST_URL   = '/api/users/'
-DETAIL_URL = lambda pk: f'/api/users/{pk}/'
+LIST_URL = '/api/users/'
+
+
+def DETAIL_URL(pk):
+    return f'/api/users/{pk}/'
 ME_URL     = '/api/users/me/'
 
 @pytest.mark.django_db

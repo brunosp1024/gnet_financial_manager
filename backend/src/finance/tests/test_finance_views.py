@@ -5,7 +5,12 @@ from finance.models import Transaction
 from customers.tests.factories import CustomerFactory
 
 LIST_URL      = '/api/finance/transactions/'
-DETAIL_URL    = lambda pk: f'/api/finance/transactions/{pk}/'
+REPORT_URL    = '/api/finance/transactions/daily_report/'
+DASHBOARD_URL = '/api/finance/dashboard/'
+
+def DETAIL_URL(pk):
+    return f'/api/finance/transactions/{pk}/'
+
 REPORT_URL    = '/api/finance/transactions/daily_report/'
 DASHBOARD_URL = '/api/finance/dashboard/'
 
