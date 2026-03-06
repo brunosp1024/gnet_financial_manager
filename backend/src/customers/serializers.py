@@ -1,4 +1,4 @@
-from core.serializers import PersonSerializer
+from core.serializers.serializers import PersonSerializer
 from customers.models import Customer
 
 

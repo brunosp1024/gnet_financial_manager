@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from core.models.mixins.audit_serializer_mixin import AuditSerializerMixin
+from core.serializers.audit_serializer_mixin import AuditSerializerMixin
 from finance.models import Transaction
 
 
