@@ -3,22 +3,22 @@ from rest_framework.permissions import BasePermission
 
 GROUPS_PERMISSIONS = {
     'ADMIN': {
-        'users':        ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
-        'employees':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'customers':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'transactions': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'users':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
+        'employees': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'customers': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'finance':   ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
     },
     'GERENTE': {
         'users':        ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
         'employees':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
         'customers':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'transactions': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'finance':      ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
     },
     'FINANCEIRO': {
         'users':        ['list', 'retrieve', 'me'],
         'employees':    ['list', 'retrieve'],
         'customers':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'transactions': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'finance':      ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
     },
 }
 
