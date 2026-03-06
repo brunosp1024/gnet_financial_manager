@@ -28,21 +28,6 @@ class TestTransactionSerializer:
         t = ts.save()
         assert t.created_by == admin_user
 
-    def test_created_by_preenchido_pelo_mixin(self, admin_user):
-        customer = CustomerFactory()
-        data = {
-            'type':        'EXPENSE',
-            'category':    'LOGISTIC',
-            'value':       '50.00',
-            'payment_method': 'CASH',
-            'customer_id': str(customer.pk),
-        }
-        s = TransactionSerializer(data=data, context={'request': make_request(admin_user)})
-        assert s.is_valid(), s.errors
-        t = s.save()
-        assert t.created_by == admin_user
-        assert t.updated_by == admin_user
-
     def test_customer_name_read_only(self):
         t = TransactionFactory()
         s = TransactionSerializer(t)

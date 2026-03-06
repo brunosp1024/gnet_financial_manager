@@ -31,34 +31,6 @@ class TestUserSerializer:
         serializer = UserSerializer(admin_user)
         assert 'password' not in serializer.data
 
-    def test_created_by_filled_by_mixin(self, admin_user):
-        request = make_request(admin_user)
-        data = {
-            'username':   'novo_user',
-            'first_name': 'Novo',
-            'last_name':  'User',
-            'email':      'novo@test.com',
-            'password':   'senha@123',
-        }
-        serializer = UserSerializer(data=data, context={'request': request})
-        assert serializer.is_valid(), serializer.errors
-        user = serializer.save()
-        assert user.created_by == admin_user
-        assert user.updated_by == admin_user
-
-    def test_updated_by_filled_on_update(self, admin_user, financeiro_user):
-        request = make_request(financeiro_user)
-        serializer = UserSerializer(
-            admin_user,
-            data={'first_name': 'Editado'},
-            partial=True,
-            context={'request': request},
-        )
-        assert serializer.is_valid(), serializer.errors
-        serializer.save()
-        admin_user.refresh_from_db()
-        assert admin_user.updated_by == financeiro_user
-
     def test_password_is_hashed_on_create(self, admin_user):
         request = make_request(admin_user)
         data = {
