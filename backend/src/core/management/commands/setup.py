@@ -81,29 +81,9 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(f'Superuser already exists: {username}'))
 
     def handle(self, *args, **kwargs):
-        for group_name, models in GROUPS.items():
+        for group_name in ('ADMIN', 'GERENTE', 'FINANCEIRO'):
             group, created = Group.objects.get_or_create(name=group_name)
-            action = 'Created' if created else 'Updated'
-
-            permissions = []
-            for model, actions in models.items():
-                ct = ContentType.objects.get_for_model(model)
-                model_name = model._meta.model_name
-                for action_name in actions:
-                    codename = f'{action_name}_{model_name}'
-                    try:
-                        perm = Permission.objects.get(content_type=ct, codename=codename)
-                        permissions.append(perm)
-                    except Permission.DoesNotExist:
-                        self.stdout.write(
-                            self.style.WARNING(
-                                f'  Permission not found: {codename}'
-                            )
-                        )
-
-            group.permissions.set(permissions)
-            self.stdout.write(self.style.SUCCESS(
-                f'{action} group "{group_name}" with {len(permissions)} permissions'
-            ))
+            action = 'Created' if created else 'Already exists'
+            self.stdout.write(self.style.SUCCESS(f'{action}: "{group_name}"'))
 
         self._ensure_superuser()

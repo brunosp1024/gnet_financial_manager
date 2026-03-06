@@ -11,7 +11,7 @@ class CustomerFactory(factory.django.DjangoModelFactory):
 
     name       = factory.LazyFunction(lambda: fake.name())
     address    = factory.LazyFunction(lambda: fake.address())
-    phone      = factory.LazyFunction(lambda: fake.phone_number()[:20])
+    phone      = ''
     cpf        = ''
     is_active  = True
     start_date = factory.LazyFunction(lambda: fake.date_object())

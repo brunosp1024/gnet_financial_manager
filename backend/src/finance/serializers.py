@@ -40,11 +40,6 @@ class TransactionSerializer(AuditSerializerMixin):
 
     def update(self, instance, validated_data):
         customer_data = validated_data.pop("customer", None)
-
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-
         if customer_data is not None:
             validated_data['customer_id'] = customer_data.get('id')
-
         return super().update(instance, validated_data)
