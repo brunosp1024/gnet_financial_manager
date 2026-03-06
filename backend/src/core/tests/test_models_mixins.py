@@ -68,6 +68,10 @@ class TestDeletedMixin:
 
 @pytest.mark.django_db
 class TestTimestampableMixin:
+    def test_id_is_uuid(self):
+        obj = DummyModel.dm_objects.create(name="UUID")
+        assert isinstance(obj.pk, uuid.UUID)
+
     def test_created_at_is_filled(self):
         obj = DummyModel.dm_objects.create(name="D")
         assert obj.created_at is not None
