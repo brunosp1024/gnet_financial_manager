@@ -31,6 +31,7 @@ class TestUserViewsAdmin:
             'first_name': 'Novo',
             'last_name':  'User',
             'email':      'novo@test.com',
+            'group':      'ADMIN',
             'password':   'senha@123',
         }
         res = admin_client.post(LIST_URL, data)
