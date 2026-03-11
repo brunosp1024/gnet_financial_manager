@@ -3,22 +3,25 @@ from rest_framework.permissions import BasePermission
 
 GROUPS_PERMISSIONS = {
     'ADMIN': {
-        'users':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
-        'employees': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'customers': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'finance':   ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
+        'users':         ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
+        'employees':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'customers':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'finance':       ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
+        'notifications': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
     },
     'GERENTE': {
-        'users':        ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
-        'employees':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'customers':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'finance':      ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
+        'users':         ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
+        'employees':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'customers':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'finance':       ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
+        'notifications': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
     },
     'FINANCEIRO': {
-        'users':        ['list', 'retrieve', 'me'],
-        'employees':    ['list', 'retrieve'],
-        'customers':    ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
-        'finance':      ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
+        'users':         ['list', 'retrieve', 'me'],
+        'employees':     ['list', 'retrieve'],
+        'customers':     ['list', 'retrieve', 'create', 'update', 'partial_update'],
+        'finance':       ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
+        'notifications': ['list', 'retrieve'],
     },
 }
 

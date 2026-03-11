@@ -190,7 +190,7 @@ class TestGroupPermission:
             ("financeiro_user", "FINANCEIRO"),
         ]
         actions = ["list", "retrieve", "create", "update", "partial_update", "destroy", "me"]
-        resources = ["users", "employees", "customers", "transactions"]
+        resources = ["users", "employees", "customers", "transactions", "notifications"]
 
         for user_fixture, group_name in user_group_pairs:
             user = request.getfixturevalue(user_fixture)
