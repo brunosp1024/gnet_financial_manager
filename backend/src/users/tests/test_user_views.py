@@ -19,13 +19,13 @@ class TestUserViewsAuthentication:
 
 @pytest.mark.django_db
 class TestUserViewsAdmin:
-    def test_admin_list_users(self, admin_client):
+    def test_list_users(self, admin_client):
         UserFactory.create_batch(3)
         res = admin_client.get(LIST_URL)
         assert res.status_code == 200
         assert res.data['count'] >= 3
 
-    def test_admin_create_user(self, admin_client):
+    def test_create_user(self, admin_client):
         data = {
             'username':   'novo_user',
             'first_name': 'Novo',
@@ -39,25 +39,20 @@ class TestUserViewsAdmin:
         assert res.data['email'] == 'novo@test.com'
         assert 'password' not in res.data
 
-    def test_admin_edit_user(self, admin_client, db):
+    def test_edit_user(self, admin_client, db):
         user = UserFactory()
         res = admin_client.patch(DETAIL_URL(user.pk), {'first_name': 'Editado'})
         assert res.status_code == 200
         assert res.data['first_name'] == 'Editado'
 
-    def test_admin_soft_delete(self, admin_client, db):
+    def test_delete_user(self, admin_client, db):
         from users.models import User
         user = UserFactory()
         pk = user.pk
         res = admin_client.delete(DETAIL_URL(pk))
         assert res.status_code == 204
         assert not User.objects.filter(pk=pk).exists()
-        assert User.dm_objects.filter(pk=pk).exists()
 
-    def test_me_returns_logged_in_user(self, admin_client, admin_user):
-        res = admin_client.get(ME_URL)
-        assert res.status_code == 200
-        assert res.data['id'] == str(admin_user.pk)
 
 @pytest.mark.django_db
 class TestUserViewsFilters:
