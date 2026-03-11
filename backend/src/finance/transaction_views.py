@@ -7,15 +7,27 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from core.permissions import GroupPermission
 from .models import Transaction
-from .serializers import TransactionSerializer
+from .serializers import (
+    TransactionCreateSerializer,
+    TransactionUpdateSerializer,
+    TransactionListSerializer,
+    TransactionDetailSerializer,
+)
 
 
 class TransactionViewSet(ModelViewSet):
-    serializer_class = TransactionSerializer
+    serializer_class = TransactionListSerializer
     permission_classes = [IsAuthenticated, GroupPermission]
     search_fields = ['description']
     ordering_fields = ['value', 'category', 'type', 'created_at']
     ordering = ['-created_at']
+    serializer_classes = {
+        'create': TransactionCreateSerializer,
+        'list': TransactionListSerializer,
+        'retrieve': TransactionDetailSerializer,
+        'update': TransactionUpdateSerializer,
+        'partial_update': TransactionUpdateSerializer,
+    }
 
     def get_queryset(self):
         qs = Transaction.objects.select_related('created_by', 'updated_by')
@@ -30,6 +42,9 @@ class TransactionViewSet(ModelViewSet):
             qs = qs.filter(created_at__date__lte=qp['date_to'])
 
         return qs
+
+    def get_serializer_class(self):
+        return self.serializer_classes.get(self.action, self.serializer_class)
     
     @action(detail=False, methods=['get'])
     def dashboard(self, request):
@@ -60,7 +75,7 @@ class TransactionViewSet(ModelViewSet):
 
         return Response({
             'date': str(today),
-            'transactions': TransactionSerializer(qs, many=True).data,
+            'transactions': TransactionListSerializer(qs, many=True).data,
             'total_income': float(inc),
             'total_expense': float(exp),
             'balance': float(inc - exp),

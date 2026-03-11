@@ -66,14 +66,14 @@ class TestTransactionViewsFilters:
         TransactionFactory(type='EXPENSE')
         response = admin_client.get(LIST_URL, {'type': 'INCOME'})
         assert response.status_code == 200
-        assert all(item['type'] == 'INCOME' for item in response.data['results'])
+        assert all(item['type_display'] == 'Entrada' for item in response.data['results'])
 
     def test_filter_by_category(self, admin_client, db):
         TransactionFactory(category='MONTHLY_FEE')
         TransactionFactory(category='LOGISTIC')
         response = admin_client.get(LIST_URL, {'category': 'MONTHLY_FEE'})
         assert response.status_code == 200
-        assert all(item['category'] == 'MONTHLY_FEE' for item in response.data['results'])
+        assert all(item['category_display'] == 'Mensalidade' for item in response.data['results'])
 
     def test_filter_by_date_range(self, admin_client, db):
         TransactionFactory(created_at=date(2024, 1, 15))
