@@ -1,9 +1,8 @@
 from rest_framework import serializers
-from core.serializers.audit_serializer_mixin import AuditSerializerMixin
 from .models import Notification
 
 
-class NotificationCreateSerializer(AuditSerializerMixin):
+class NotificationCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Notification

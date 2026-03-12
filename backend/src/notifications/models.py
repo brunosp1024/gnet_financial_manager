@@ -1,9 +1,8 @@
 from uuid import uuid4
 from django.db import models
-from core.models.mixins.deleted_mixin import DeletedMixin
 
 
-class Notification(models.Model, DeletedMixin):
+class Notification(models.Model):
     class Type(models.TextChoices):
         OVERDUE = "OVERDUE", "Fatura em Atraso"
         NEW_CUSTOMER = "NEW_CUSTOMER", "Novo Cliente"
