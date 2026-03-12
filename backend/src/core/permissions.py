@@ -8,6 +8,7 @@ GROUPS_PERMISSIONS = {
         'customers':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
         'finance':       ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
         'notifications': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'invoices':      ['list', 'create', 'update', 'partial_update', 'destroy'],
     },
     'GERENTE': {
         'users':         ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'me'],
@@ -15,6 +16,7 @@ GROUPS_PERMISSIONS = {
         'customers':     ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
         'finance':       ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
         'notifications': ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy'],
+        'invoices':      ['list', 'create', 'update', 'partial_update', 'destroy'],
     },
     'FINANCEIRO': {
         'users':         ['list', 'retrieve', 'me'],
@@ -22,6 +24,7 @@ GROUPS_PERMISSIONS = {
         'customers':     ['list', 'retrieve', 'create', 'update', 'partial_update'],
         'finance':       ['list', 'retrieve', 'create', 'update', 'partial_update', 'destroy', 'daily_report', 'dashboard'],
         'notifications': ['list', 'retrieve'],
+        'invoices':      ['list', 'create', 'update', 'partial_update', 'destroy'],
     },
 }
 
