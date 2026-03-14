@@ -125,13 +125,8 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
     # Default pagination settings
-    'DEFAULT_PAGINATION_CLASS':  'core.pagination.standard_pagination.StandardPagination',
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.standard_pagination.StandardPagination',
     'PAGE_SIZE': 20,
-    'DEFAULT_FILTER_BACKENDS': [
-        'django_filters.rest_framework.DjangoFilterBackend',
-        'rest_framework.filters.SearchFilter',
-        'rest_framework.filters.OrderingFilter',
-    ],
     # Throttling
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
