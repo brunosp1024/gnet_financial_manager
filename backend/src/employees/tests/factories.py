@@ -11,7 +11,7 @@ class EmployeeFactory(factory.django.DjangoModelFactory):
 
     name       = factory.LazyFunction(lambda: fake.name())
     address    = factory.LazyFunction(lambda: fake.address())
-    phone      = ''
+    phone      = None
     cpf        = ''
     position   = factory.LazyFunction(lambda: fake.job()[:100])
     modality   = Employee.Modality.CLT

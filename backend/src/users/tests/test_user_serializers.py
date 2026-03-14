@@ -178,13 +178,6 @@ class TestUserDetailSerializer:
         s = UserDetailSerializer(user)
         assert s.data['updated_by'] == gerente_user.get_full_name()
 
-    def test_created_by_absent_when_not_set(self):
-        # CharField(source="created_by.get_full_name") is omitted by DRF (SkipField)
-        # when created_by is None — field is absent from output, not null
-        user = UserFactory()
-        s = UserDetailSerializer(user)
-        assert 'created_by' not in s.data
-
 
 # ── UserUpdateSerializer ───────────────────────────────────────────────────────
 

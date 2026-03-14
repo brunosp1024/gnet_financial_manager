@@ -78,7 +78,7 @@ class TestEmployeeSerializer:
         employee.save()
         serializer = EmployeeDetailSerializer(employee, context={'request': make_request(admin_user)})
         expected = {
-            "id", "name", "address", "phone", "cpf", "position", "modality", "start_date",
+            "id", "name", "address", "phone", "cpf", "position", "modality", "start_date", "birthday",
             "observations", "is_active", "created_at", "created_by", "updated_at", "updated_by"
         }
         assert expected == set(serializer.data.keys())
