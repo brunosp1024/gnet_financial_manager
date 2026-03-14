@@ -2,8 +2,14 @@ from rest_framework import serializers
 
 
 class AuditSerializerMixin(serializers.ModelSerializer):
-    created_by = serializers.CharField(source="created_by.get_full_name", read_only=True)
-    updated_by = serializers.CharField(source="updated_by.get_full_name", read_only=True)
+    created_by = serializers.SerializerMethodField()
+    updated_by = serializers.SerializerMethodField()
+
+    def get_created_by(self, obj):
+        return obj.created_by.get_full_name() if obj.created_by else None
+
+    def get_updated_by(self, obj):
+        return obj.updated_by.get_full_name() if obj.updated_by else None
 
     def _current_user(self):
         request = self.context.get('request')
