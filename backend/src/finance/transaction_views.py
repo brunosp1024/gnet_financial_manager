@@ -16,6 +16,7 @@ from .serializers import (
 
 
 class TransactionViewSet(ModelViewSet):
+    permission_resource = 'finance'
     serializer_class = TransactionListSerializer
     permission_classes = [IsAuthenticated, GroupPermission]
     search_fields = ['description']

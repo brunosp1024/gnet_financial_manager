@@ -9,6 +9,7 @@ from .serializers import UserCreateSerializer, UserDetailSerializer, UserUpdateS
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
+    permission_resource = 'users'
     permission_classes = [IsAuthenticated, GroupPermission]
     search_fields = ['first_name', 'last_name', 'email']
     ordering_fields = ['first_name', 'created_at']

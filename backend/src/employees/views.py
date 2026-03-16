@@ -6,11 +6,12 @@ from .serializers import EmployeeListSerializer, EmployeeDetailSerializer, Emplo
 
 
 class EmployeeViewSet(ModelViewSet):
+    permission_resource = 'employees'
     queryset = Employee.objects.all()
     serializer_class = EmployeeListSerializer
     permission_classes = [IsAuthenticated, GroupPermission]
     search_fields = ['name', 'cpf', 'position']
-    ordering_fields = ['name', 'position', 'admission_date', 'modality', 'created_at']
+    ordering_fields = ['name', 'position', 'start_date', 'modality', 'created_at']
     serializer_classes = {
         'create': EmployeeCreateUpdateSerializer,
         'list': EmployeeListSerializer,

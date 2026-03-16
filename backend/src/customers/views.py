@@ -10,6 +10,7 @@ from invoices.models import Invoice
 
 class CustomerViewSet(ModelViewSet):
     queryset = Customer.objects.all()
+    permission_resource = 'customers'
     serializer_class = CustomerListSerializer
     permission_classes = [IsAuthenticated, GroupPermission]
     search_fields = ['name', 'cpf', 'address']

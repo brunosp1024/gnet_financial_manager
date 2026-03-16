@@ -11,6 +11,7 @@ from .serializers import (
 
 class InvoiceViewSet(ModelViewSet):
     queryset = Invoice.objects.select_related('customer')
+    permission_resource = 'invoices'
     serializer_class = InvoiceListSerializer
     permission_classes = [IsAuthenticated, GroupPermission]
     ordering_fields = ['value', 'due_date', 'status', 'created_at']

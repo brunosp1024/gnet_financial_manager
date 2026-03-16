@@ -8,6 +8,7 @@ from .serializers import NotificationCreateSerializer, NotificationListSerialize
 
 class NotificationViewSet(ModelViewSet):
     queryset = Notification.objects.all()
+    permission_resource = 'notifications'
     serializer_class = NotificationListSerializer
     permission_classes = [IsAuthenticated, GroupPermission]
     filter_backends = [DjangoFilterBackend]
