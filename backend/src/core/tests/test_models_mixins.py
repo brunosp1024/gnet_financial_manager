@@ -4,11 +4,10 @@ import pytest
 from django.db import connection, models
 from django.utils import timezone
 
-from core.models.mixins.deleted_mixin import DeletedMixin
-from core.models.mixins.timestampable_mixin import TimestampableMixin
+from core.models.mixins import BaseModel
 
 
-class DummyModel(DeletedMixin, TimestampableMixin, models.Model):
+class DummyModel(BaseModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100, default="dummy")
 

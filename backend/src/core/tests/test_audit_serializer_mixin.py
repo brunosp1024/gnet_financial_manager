@@ -3,11 +3,10 @@ from django.db import connection, models
 from rest_framework.test import APIRequestFactory
 
 from core.serializers.audit_serializer_mixin import AuditSerializerMixin
-from core.models.mixins.deleted_mixin import DeletedMixin
-from core.models.mixins.timestampable_mixin import TimestampableMixin
+from core.models.mixins import BaseModel
 
 
-class DummyAuditModel(TimestampableMixin, DeletedMixin, models.Model):
+class DummyAuditModel(BaseModel):
     name = models.CharField(max_length=100)
 
     class Meta:

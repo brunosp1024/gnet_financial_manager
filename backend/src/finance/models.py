@@ -1,9 +1,8 @@
 from django.db import models
-from core.models.mixins.deleted_mixin import DeletedMixin
-from core.models.mixins.timestampable_mixin import TimestampableMixin
+from core.models.mixins import BaseModel
 
 
-class Transaction(TimestampableMixin, DeletedMixin):
+class Transaction(BaseModel):
     class Type(models.TextChoices):
         INCOME = "INCOME", "Entrada"
         EXPENSE = "EXPENSE", "Saida"

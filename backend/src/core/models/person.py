@@ -1,10 +1,9 @@
 from django.db import models
-from .mixins.deleted_mixin import DeletedMixin
-from .mixins.timestampable_mixin import TimestampableMixin
+from .mixins import BaseModel
 from utils.validators import validate_cpf, validate_phone
 
 
-class Person(TimestampableMixin, DeletedMixin):
+class Person(BaseModel):
     name = models.CharField(max_length=200)
     address = models.TextField(blank=True)
     phone = models.CharField(max_length=20, blank=True, null=True, unique=True, validators=[validate_phone])

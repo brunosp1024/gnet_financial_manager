@@ -1,9 +1,8 @@
 from django.db import models
-from core.models.mixins.deleted_mixin import DeletedMixin
-from core.models.mixins.timestampable_mixin import TimestampableMixin
+from core.models.mixins import BaseModel
 
 
-class Invoice(TimestampableMixin, DeletedMixin):
+class Invoice(BaseModel):
     class Status(models.TextChoices):
         PENDING = "PENDING", "Pendente"
         PAID = "PAID", "Pago"
