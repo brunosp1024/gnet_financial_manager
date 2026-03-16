@@ -35,7 +35,7 @@ class GroupPermission(BasePermission):
     e `action` do ViewSet para checar se o grupo tem permissão.
 
     Uso na view:
-        resource = 'transactions'
+        resource = 'finance'
         permission_classes = [GroupPermission]
     """
 

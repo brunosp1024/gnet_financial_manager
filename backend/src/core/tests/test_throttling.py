@@ -15,12 +15,6 @@ def _create_user(username='throttle-user', password='Senha@123'):
 
 
 @pytest.fixture(autouse=True)
-def _fast_password_hasher(settings):
-    # JWT login tests call Django password checks repeatedly; MD5 makes tests much faster.
-    settings.PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']
-
-
-@pytest.fixture(autouse=True)
 def _isolate_throttle_cache():
     cache.clear()
     yield
