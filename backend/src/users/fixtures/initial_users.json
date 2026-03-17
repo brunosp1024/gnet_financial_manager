@@ -1,0 +1,71 @@
+[
+  {
+    "model": "users.user",
+    "pk": "11111111-1111-4111-8111-111111111111",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$1tnkS10oIMPXIjAHI4kERr$5fifjyo4I7hmaq3//X5SnN9SFfZLBsR4pybX8RnC7pg=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "Bruno",
+      "last_name": "Admin",
+      "email": "admin123@gnet.local",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-03-01T08:00:00Z",
+      "created_at": "2026-03-01T08:00:00Z",
+      "updated_at": "2026-03-01T08:00:00Z",
+      "deleted_at": null,
+      "created_by": null,
+      "updated_by": null,
+      "groups": [1],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": "22222222-2222-4222-8222-222222222222",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$Aab5uc14nlgar3FkvwL1me$o3EM0Ygviln0WDuKK9DT738J+ldiT0FfnkyxSbGBvN0=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "gerente",
+      "first_name": "Carla",
+      "last_name": "Gerente",
+      "email": "gerente123@gnet.local",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-03-02T09:00:00Z",
+      "created_at": "2026-03-02T09:00:00Z",
+      "updated_at": "2026-03-02T09:00:00Z",
+      "deleted_at": null,
+      "created_by": "11111111-1111-4111-8111-111111111111",
+      "updated_by": "11111111-1111-4111-8111-111111111111",
+      "groups": [2],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": "33333333-3333-4333-8333-333333333333",
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$Ub71Ou3yCqRgYlttTiFlzR$1YAYuOV0P57h72YUMACT8p1IMjqtZ9fubn2ux/Pc6iI=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "financeiro",
+      "first_name": "Diego",
+      "last_name": "Financeiro",
+      "email": "financeiro123@gnet.local",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-03T10:00:00Z",
+      "created_at": "2026-03-03T10:00:00Z",
+      "updated_at": "2026-03-03T10:00:00Z",
+      "deleted_at": null,
+      "created_by": "11111111-1111-4111-8111-111111111111",
+      "updated_by": "11111111-1111-4111-8111-111111111111",
+      "groups": [3],
+      "user_permissions": []
+    }
+  }
+]

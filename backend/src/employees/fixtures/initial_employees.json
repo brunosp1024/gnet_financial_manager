@@ -1,0 +1,233 @@
+[
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb2",
+    "fields": {
+      "name": "David Rodrigues",
+      "address": "Rua Aurora, 301, Bela Vista",
+      "phone": "11991230002",
+      "cpf": "22233344455",
+      "start_date": "2018-02-01",
+      "birthday": "1998-07-03",
+      "is_active": true,
+      "observations": "Gestao de equipe e acompanhamento de metas.",
+      "position": "Gerente",
+      "modality": "CLT",
+      "created_at": "2026-03-04T09:40:00Z",
+      "updated_at": "2026-03-04T09:40:00Z",
+      "deleted_at": null,
+      "created_by": "22222222-2222-4222-8222-222222222222",
+      "updated_by": "22222222-2222-4222-8222-222222222222"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb3",
+    "fields": {
+      "name": "Luana Silva",
+      "address": "Rua Central, 120, Jardim Sul",
+      "phone": "11991230003",
+      "cpf": "33344455566",
+      "start_date": "2024-04-15",
+      "birthday": "1995-01-22",
+      "is_active": true,
+      "observations": "Atendimento por telefone e WhatsApp.",
+      "position": "Atendente",
+      "modality": "CLT",
+      "created_at": "2026-03-04T10:10:00Z",
+      "updated_at": "2026-03-04T10:10:00Z",
+      "deleted_at": null,
+      "created_by": "11111111-1111-4111-8111-111111111111",
+      "updated_by": "11111111-1111-4111-8111-111111111111"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb4",
+    "fields": {
+      "name": "Marcos Rocha",
+      "address": "Avenida Brasil, 88, Centro",
+      "phone": "11991230004",
+      "cpf": "44455566677",
+      "start_date": "2024-05-05",
+      "birthday": "1991-09-12",
+      "is_active": true,
+      "observations": "Apoio em propostas e renovacoes de contrato.",
+      "position": "Assistente Comercial",
+      "modality": "CLT",
+      "created_at": "2026-03-04T10:40:00Z",
+      "updated_at": "2026-03-04T10:40:00Z",
+      "deleted_at": null,
+      "created_by": "22222222-2222-4222-8222-222222222222",
+      "updated_by": "22222222-2222-4222-8222-222222222222"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb5",
+    "fields": {
+      "name": "Patricia Nunes",
+      "address": "Rua das Flores, 305, Nova Esperanca",
+      "phone": "11991230005",
+      "cpf": "55566677788",
+      "start_date": "2024-06-01",
+      "birthday": "1990-11-02",
+      "is_active": true,
+      "observations": "Conferencia de caixa e contas a pagar.",
+      "position": "Assistente Financeiro",
+      "modality": "CLT",
+      "created_at": "2026-03-04T11:00:00Z",
+      "updated_at": "2026-03-04T11:00:00Z",
+      "deleted_at": null,
+      "created_by": "33333333-3333-4333-8333-333333333333",
+      "updated_by": "33333333-3333-4333-8333-333333333333"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb6",
+    "fields": {
+      "name": "Igor Pires",
+      "address": "Rua do Comercio, 41, Centro",
+      "phone": "11991230006",
+      "cpf": "66677788899",
+      "start_date": "2024-06-20",
+      "birthday": "1994-02-17",
+      "is_active": true,
+      "observations": "Suporte remoto para clientes corporativos.",
+      "position": "Tecnico de Suporte Interno",
+      "modality": "CLT",
+      "created_at": "2026-03-04T11:30:00Z",
+      "updated_at": "2026-03-04T11:30:00Z",
+      "deleted_at": null,
+      "created_by": "11111111-1111-4111-8111-111111111111",
+      "updated_by": "11111111-1111-4111-8111-111111111111"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb7",
+    "fields": {
+      "name": "Renato Barbosa",
+      "address": "Rua das Laranjeiras, 12, Centro",
+      "phone": "11991230007",
+      "cpf": "77788899900",
+      "start_date": "2024-07-10",
+      "birthday": "1993-04-26",
+      "is_active": true,
+      "observations": "Abertura e acompanhamento de chamados internos.",
+      "position": "Tecnico de Suporte Interno",
+      "modality": "CLT",
+      "created_at": "2026-03-04T12:00:00Z",
+      "updated_at": "2026-03-04T12:00:00Z",
+      "deleted_at": null,
+      "created_by": "22222222-2222-4222-8222-222222222222",
+      "updated_by": "22222222-2222-4222-8222-222222222222"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb8",
+    "fields": {
+      "name": "Carlos Pereira",
+      "address": "Rua Nova, 17, Vila Norte",
+      "phone": "11991230008",
+      "cpf": "88899900011",
+      "start_date": "2024-08-01",
+      "birthday": "1992-03-17",
+      "is_active": true,
+      "observations": "Tecnico responsavel pela rede externa setor 1.",
+      "position": "Tecnico de Redes",
+      "modality": "CLT",
+      "created_at": "2026-03-04T12:20:00Z",
+      "updated_at": "2026-03-04T12:20:00Z",
+      "deleted_at": null,
+      "created_by": "11111111-1111-4111-8111-111111111111",
+      "updated_by": "11111111-1111-4111-8111-111111111111"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbb9",
+    "fields": {
+      "name": "Mateus Gomes",
+      "address": "Rua Santos Dumont, 220, Bela Vista",
+      "phone": "11991230009",
+      "cpf": "99900011122",
+      "start_date": "2024-09-11",
+      "birthday": "1991-05-09",
+      "is_active": true,
+      "observations": "Instalacoes e manutencao de fibra setor 2.",
+      "position": "Tecnico de Redes",
+      "modality": "CLT",
+      "created_at": "2026-03-04T12:40:00Z",
+      "updated_at": "2026-03-04T12:40:00Z",
+      "deleted_at": null,
+      "created_by": "22222222-2222-4222-8222-222222222222",
+      "updated_by": "22222222-2222-4222-8222-222222222222"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb10",
+    "fields": {
+      "name": "Helio Costa",
+      "address": "Rua das Oliveiras, 55, Jardim Azul",
+      "phone": "11991230010",
+      "cpf": "10011122233",
+      "start_date": "2024-10-03",
+      "birthday": "1986-08-30",
+      "is_active": true,
+      "observations": "Tecnico de campo para vistorias e reparos.",
+      "position": "Tecnico de Redes",
+      "modality": "CLT",
+      "created_at": "2026-03-04T13:00:00Z",
+      "updated_at": "2026-03-04T13:00:00Z",
+      "deleted_at": null,
+      "created_by": "33333333-3333-4333-8333-333333333333",
+      "updated_by": "33333333-3333-4333-8333-333333333333"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb11",
+    "fields": {
+      "name": "Vanessa Prado",
+      "address": "Avenida Central, 410, Centro",
+      "phone": "11991230011",
+      "cpf": "21122233344",
+      "start_date": "2024-11-15",
+      "birthday": "1994-12-18",
+      "is_active": true,
+      "observations": "Atendimento tecnico em condominios.",
+      "position": "Tecnico de Redes",
+      "modality": "CLT",
+      "created_at": "2026-03-04T13:20:00Z",
+      "updated_at": "2026-03-04T13:20:00Z",
+      "deleted_at": null,
+      "created_by": "11111111-1111-4111-8111-111111111111",
+      "updated_by": "11111111-1111-4111-8111-111111111111"
+    }
+  },
+  {
+    "model": "employees.employee",
+    "pk": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbb12",
+    "fields": {
+      "name": "Fabio Teixeira",
+      "address": "Rua Primavera, 90, Jardim Novo",
+      "phone": "11991230012",
+      "cpf": "32233344455",
+      "start_date": "2025-01-08",
+      "birthday": "1985-10-06",
+      "is_active": true,
+      "observations": "Coordenacao das equipes tecnicas em campo.",
+      "position": "Coordenador de Operacoes",
+      "modality": "CLT",
+      "created_at": "2026-03-04T13:40:00Z",
+      "updated_at": "2026-03-04T13:40:00Z",
+      "deleted_at": null,
+      "created_by": "22222222-2222-4222-8222-222222222222",
+      "updated_by": "22222222-2222-4222-8222-222222222222"
+    }
+  }
+]

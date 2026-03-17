@@ -1,0 +1,42 @@
+[
+  {
+    "model": "notifications.notification",
+    "pk": "9b4c2f0a-4f8e-4d86-a5a5-f8d4a8bc1f01",
+    "fields": {
+      "type": "OVERDUE",
+      "message": "Fatura #1024 está em atraso há 7 dias.",
+      "is_read": true,
+      "created_at": "2026-03-10T09:00:00Z"
+    }
+  },
+  {
+    "model": "notifications.notification",
+    "pk": "4a2fcb4f-97fd-4c8c-99f8-cf7f0df2c8a2",
+    "fields": {
+      "type": "NEW_CUSTOMER",
+      "message": "Novo cliente cadastrado: Maria Oliveira.",
+      "is_read": false,
+      "created_at": "2026-03-12T14:30:00Z"
+    }
+  },
+  {
+    "model": "notifications.notification",
+    "pk": "0f1f0d9d-b23d-4dc7-90e5-2ac4f0d8b6bd",
+    "fields": {
+      "type": "BIRTHDAY",
+      "message": "Hoje e aniversario de Joao Santos.",
+      "is_read": true,
+      "created_at": "2025-03-15T08:15:00Z"
+    }
+  },
+  {
+    "model": "notifications.notification",
+    "pk": "7eb0f1a9-a159-4b8e-a126-e6c2d6ff2274",
+    "fields": {
+      "type": "ANOTHER",
+      "message": "Lembrete: revisar relatorio financeiro semanal.",
+      "is_read": false,
+      "created_at": "2026-03-16T17:45:00Z"
+    }
+  }
+]

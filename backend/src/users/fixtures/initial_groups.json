@@ -1,0 +1,85 @@
+[
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "ADMIN",
+      "permissions": [
+        ["view_user", "users", "user"],
+        ["add_user", "users", "user"],
+        ["change_user", "users", "user"],
+        ["delete_user", "users", "user"],
+        ["view_customer", "customers", "customer"],
+        ["add_customer", "customers", "customer"],
+        ["change_customer", "customers", "customer"],
+        ["delete_customer", "customers", "customer"],
+        ["view_employee", "employees", "employee"],
+        ["add_employee", "employees", "employee"],
+        ["change_employee", "employees", "employee"],
+        ["delete_employee", "employees", "employee"],
+        ["view_transaction", "finance", "transaction"],
+        ["add_transaction", "finance", "transaction"],
+        ["change_transaction", "finance", "transaction"],
+        ["delete_transaction", "finance", "transaction"],
+        ["view_invoice", "invoices", "invoice"],
+        ["add_invoice", "invoices", "invoice"],
+        ["change_invoice", "invoices", "invoice"],
+        ["delete_invoice", "invoices", "invoice"],
+        ["view_notification", "notifications", "notification"]
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "GERENTE",
+      "permissions": [
+        ["view_user", "users", "user"],
+        ["add_user", "users", "user"],
+        ["change_user", "users", "user"],
+        ["delete_user", "users", "user"],
+        ["view_customer", "customers", "customer"],
+        ["add_customer", "customers", "customer"],
+        ["change_customer", "customers", "customer"],
+        ["delete_customer", "customers", "customer"],
+        ["view_employee", "employees", "employee"],
+        ["add_employee", "employees", "employee"],
+        ["change_employee", "employees", "employee"],
+        ["delete_employee", "employees", "employee"],
+        ["view_transaction", "finance", "transaction"],
+        ["add_transaction", "finance", "transaction"],
+        ["change_transaction", "finance", "transaction"],
+        ["delete_transaction", "finance", "transaction"],
+        ["view_invoice", "invoices", "invoice"],
+        ["add_invoice", "invoices", "invoice"],
+        ["change_invoice", "invoices", "invoice"],
+        ["delete_invoice", "invoices", "invoice"],
+        ["view_notification", "notifications", "notification"]
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+      "name": "FINANCEIRO",
+      "permissions": [
+        ["view_user", "users", "user"],
+        ["view_customer", "customers", "customer"],
+        ["add_customer", "customers", "customer"],
+        ["change_customer", "customers", "customer"],
+        ["view_employee", "employees", "employee"],
+        ["view_transaction", "finance", "transaction"],
+        ["add_transaction", "finance", "transaction"],
+        ["change_transaction", "finance", "transaction"],
+        ["delete_transaction", "finance", "transaction"],
+        ["view_invoice", "invoices", "invoice"],
+        ["add_invoice", "invoices", "invoice"],
+        ["change_invoice", "invoices", "invoice"],
+        ["delete_invoice", "invoices", "invoice"],
+        ["view_notification", "notifications", "notification"]
+      ]
+    }
+  }
+]
