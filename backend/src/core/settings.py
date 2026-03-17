@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -145,6 +146,37 @@ REST_FRAMEWORK = {
 # CORS
 CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(',')
 CORS_ALLOW_CREDENTIALS = True
+
+# Celery Configuration
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0')
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_ENABLE_UTC = True
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
+
+# Celery Beat Schedule
+CELERY_BEAT_SCHEDULE = {
+    'delete-old-notifications': {
+        'task': 'notifications.tasks.delete_old_notifications',
+        'schedule': crontab(hour=6, minute=0),  # Daily at 6:00 AM
+    },
+    'check-employee-birthdays': {
+        'task': 'employees.tasks.check_employee_birthdays',
+        'schedule': crontab(hour=6, minute=0),  # Daily at 6:00 AM
+    },
+    'check-overdue-invoices': {
+        'task': 'invoices.tasks.check_overdue_invoices',
+        'schedule': crontab(hour=6, minute=0),  # Daily at 6:00 AM
+    },
+    'physical-delete-soft-deleted': {
+        'task': 'core.tasks.physical_delete_soft_deleted',
+        'schedule': crontab(hour=6, minute=0),  # Daily at 6:00 AM
+    },
+}
 
 # drf-spectacular
 SPECTACULAR_SETTINGS = {

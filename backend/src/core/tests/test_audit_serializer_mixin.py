@@ -21,7 +21,7 @@ class DummyAuditSerializer(AuditSerializerMixin):
         read_only_fields = ["created_by", "updated_by"]
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def dummy_audit_model_table(django_db_setup, django_db_blocker):
     table_name = DummyAuditModel._meta.db_table
 

@@ -29,5 +29,21 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
+5. Rodar backend + Celery + Beat + Redis local de desenvolvimento:
+
+> Antes, instalar e executar o redis-server
+```bash
+sudo apt install -y redis-server
+sudo systemctl enable --now redis-server
+```
+
+```bash
+chmod +x run.sh
+./run.sh
+```
+
+> O script `run.sh` sobe `celery worker` e `celery beat` automaticamente.
+> Se o Redis ja estiver ativo em `localhost:6379`, ele reutiliza a instancia existente.
+
 > O projeto já inclui limites de requisição (throttling) configuráveis por `.env`:
 > `THROTTLE_ANON_RATE`, `THROTTLE_USER_RATE` e `THROTTLE_LOGIN_RATE`.

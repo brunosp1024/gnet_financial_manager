@@ -16,7 +16,7 @@ class DummyModel(BaseModel):
         db_table = "test_dummy_model_for_mixins"
 
 
-@pytest.fixture(scope="module", autouse=True)
+@pytest.fixture(scope="session", autouse=True)
 def dummy_model_table(django_db_setup, django_db_blocker):
     table_name = DummyModel._meta.db_table
 
