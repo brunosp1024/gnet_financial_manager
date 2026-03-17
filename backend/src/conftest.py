@@ -1,6 +1,7 @@
 import pytest
 from rest_framework.test import APIClient
 from django.contrib.auth.models import Group
+from apps.users.tests.factories import UserFactory
 
 
 # ── Groups ────────────────────────────────────────────────────────────────────
@@ -17,22 +18,18 @@ def create_groups(django_db_setup, django_db_blocker):
 
 @pytest.fixture
 def admin_user(db):
-    from users.tests.factories import UserFactory
     return UserFactory(groups=['ADMIN'])
 
 @pytest.fixture
 def gerente_user(db):
-    from users.tests.factories import UserFactory
     return UserFactory(groups=['GERENTE'])
 
 @pytest.fixture
 def financeiro_user(db):
-    from users.tests.factories import UserFactory
     return UserFactory(groups=['FINANCEIRO'])
 
 @pytest.fixture
 def no_group_user(db):
-    from users.tests.factories import UserFactory
     return UserFactory(groups=[])
 
 

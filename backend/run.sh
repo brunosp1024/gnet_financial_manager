@@ -34,7 +34,7 @@ cd "$SRC_DIR"
 
 # Start Celery worker with beat in the background.
 echo "Subindo Celery worker com beat..."
-"$VENV_PYTHON" -m celery -A core worker -B -l info &
+"$VENV_PYTHON" -m celery -A apps.core worker -B -l info &
 CELERY_PID=$!
 
 # Wait 2 seconds to give Celery time to start.
