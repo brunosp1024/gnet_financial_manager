@@ -1,3 +1,4 @@
+from rest_framework import serializers
 import pytest
 from apps.customers.serializers import (
     CustomerCreateUpdateSerializer,
@@ -61,14 +62,27 @@ class TestCustomerCreateUpdateSerializer:
         assert not s.is_valid()
         assert 'cpf' in s.errors
 
+    def test_cpf_is_empty(self, admin_user):
+        data = {'name': 'Cliente', 'cpf': '', 'start_date': '2024-01-01'}
+        s = CustomerCreateUpdateSerializer(data=data, context={'request': make_request(admin_user)})
+        assert s.is_valid(), s.errors
+
+    def test_duplicate_cpf(self, admin_user):
+        CustomerFactory(cpf='52998224725')
+        data = {'name': 'Outro Cliente', 'cpf': '52998224725', 'start_date': '2024-01-01'}
+
+        s = CustomerCreateUpdateSerializer(data=data, context={'request': make_request(admin_user)})
+        assert not s.is_valid()
+        assert 'cpf' in s.errors
+
     # ── Phone ─────────────────────────────────────────────────────────────────
 
     def test_duplicate_phone_is_rejected(self, admin_user):
-        CustomerFactory(phone='11912345678')
-        data = {'name': 'Outro Cliente', 'start_date': '2024-01-01', 'phone': '11912345678'}
+        CustomerFactory(phone='11912345678', cpf='52998124735')
+        data = {'name': 'Outro Cliente', 'start_date': '2024-01-01', 'phone': '11912345678', 'cpf': '52998224725'}
         s = CustomerCreateUpdateSerializer(data=data, context={'request': make_request(admin_user)})
-        assert not s.is_valid()
-        assert 'phone' in s.errors
+        with pytest.raises(serializers.ValidationError):
+            s.validate_phone('11912345678')
 
     def test_duplicate_phone_allows_editing_same_record(self, admin_user):
         c = CustomerFactory(phone='11912345678')

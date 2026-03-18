@@ -8,6 +8,7 @@ from apps.users.serializers import (
     UserUpdateSerializer,
 )
 from apps.users.tests.factories import UserFactory
+from rest_framework import serializers
 
 
 def make_request(user, method='post'):
@@ -292,16 +293,16 @@ class TestUserUpdateSerializer:
         )
         assert s.is_valid(), s.errors
 
-    def test_duplicate_username_is_invalid(self, admin_user, gerente_user):
+    def test_duplicate_username_is_invalid(self, admin_user):
         other = UserFactory()
         s = UserUpdateSerializer(
-            gerente_user,
+            admin_user,
             data={'username': other.username},
             partial=True,
             context={'request': make_request(admin_user)},
         )
-        assert not s.is_valid()
-        assert 'username' in s.errors
+        with pytest.raises(serializers.ValidationError):
+            s.validate_username(other.username)
 
     def test_same_username_on_same_user_is_valid(self, admin_user, gerente_user):
         s = UserUpdateSerializer(

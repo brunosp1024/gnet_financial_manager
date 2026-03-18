@@ -3,11 +3,10 @@ from apps.users.tests.factories import UserFactory
 
 
 LIST_URL = '/api/users/'
-
+ME_URL   = '/api/users/me/'
 
 def DETAIL_URL(pk):
     return f'/api/users/{pk}/'
-ME_URL     = '/api/users/me/'
 
 @pytest.mark.django_db
 class TestUserViewsAuthentication:
@@ -56,18 +55,24 @@ class TestUserViewsAdmin:
 
 @pytest.mark.django_db
 class TestUserViewsFilters:
-    def test_search_by_name(self, admin_client, db):
+    def test_search_by_name(self, gerente_client, db):
         UserFactory(first_name='Zacarias', last_name='Teste')
         UserFactory(first_name='Maria',    last_name='Teste')
-        res = admin_client.get(LIST_URL, {'search': 'Zacarias'})
+        res = gerente_client.get(LIST_URL, {'search': 'Zacarias'})
         assert res.status_code == 200
         assert res.data['count'] == 1
         assert res.data['results'][0]['first_name'] == 'Zacarias'
 
-    def test_ordering_by_first_name(self, admin_client, db):
+    def test_ordering_by_first_name(self, gerente_client, db):
         UserFactory(first_name='Zebra')
         UserFactory(first_name='Abacate')
-        res = admin_client.get(LIST_URL, {'ordering': 'first_name'})
+        res = gerente_client.get(LIST_URL, {'ordering': 'first_name'})
         assert res.status_code == 200
         names = [r['first_name'] for r in res.data['results']]
         assert names == sorted(names)
+
+    def test_me_returns_authenticated_user(self, admin_client, admin_user):
+        res = admin_client.get(ME_URL)
+        assert res.status_code == 200
+        assert res.data['username'] == admin_user.username
+        assert res.data['email'] == admin_user.email

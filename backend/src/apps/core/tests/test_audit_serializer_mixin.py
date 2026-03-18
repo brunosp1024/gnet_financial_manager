@@ -25,12 +25,6 @@ class DummyAuditSerializer(AuditSerializerMixin):
 def dummy_audit_model_table(django_db_setup, django_db_blocker):
     table_name = DummyAuditModel._meta.db_table
 
-    with django_db_blocker.unblock():
-        existing_tables = connection.introspection.table_names()
-        with connection.schema_editor() as schema_editor:
-            if table_name not in existing_tables:
-                schema_editor.create_model(DummyAuditModel)
-
     yield
 
     with django_db_blocker.unblock():
@@ -73,3 +67,14 @@ class TestAuditSerializerMixin:
         serializer.save()
         obj.refresh_from_db()
         assert obj.updated_by == financeiro_user
+    
+    def test_created_by_and_updated_by_without_user(self, admin_user):
+        """Test that created_by and updated_by are None when no user is provided."""
+        serializer = DummyAuditSerializer(
+            data={'name': 'Audit Test'},
+            context={'request': None},
+        )
+        assert serializer.is_valid(), serializer.errors
+        obj = serializer.save()
+        assert obj.created_by is None
+        assert obj.updated_by is None

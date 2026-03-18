@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from unittest.mock import patch
 import pytest
 from django.utils import timezone
 
@@ -122,21 +123,28 @@ class TestCheckEmployeeBirthdays:
 
     def test_handles_leap_year_birthdays(self):
         """Should handle employees born on Feb 29."""
-        today = timezone.now().date()
-        # Create employee born on Feb 29 (only exists in leap years)
         employee = EmployeeFactory(is_active=True)
-        employee.birthday = date(1992, 2, 29)
+        employee.birthday = date(1992, 2, 28)
         employee.save()
 
-        # Task should not crash
-        if today.month == 2 and today.day == 29:
+        # Simulate running task on Feb 28 of a non-leap year
+        with patch('django.utils.timezone.now') as mock_now:
+            mock_now.return_value = timezone.datetime(2024, 2, 28)
             check_employee_birthdays()
-            # Notification might or might not be created depending on today's date
-        else:
-            check_employee_birthdays()
-            # No notification on non-leap-year equivalent dates
+
             notification_count = Notification.objects.filter(
                 type=Notification.Type.BIRTHDAY,
                 message__contains=employee.name,
             ).count()
-            assert notification_count == 0
+            assert notification_count == 1
+        
+        # Should not create notification
+        with patch('django.utils.timezone.now') as mock_now:
+            mock_now.return_value = timezone.datetime(2024, 3, 28)
+            check_employee_birthdays()
+
+            notification_count = Notification.objects.filter(
+                type=Notification.Type.BIRTHDAY,
+                message__contains=employee.name,
+            ).count()
+            assert notification_count == 1

@@ -20,12 +20,6 @@ class DummyModel(BaseModel):
 def dummy_model_table(django_db_setup, django_db_blocker):
     table_name = DummyModel._meta.db_table
 
-    with django_db_blocker.unblock():
-        existing_tables = connection.introspection.table_names()
-        with connection.schema_editor() as schema_editor:
-            if table_name not in existing_tables:
-                schema_editor.create_model(DummyModel)
-
     yield
 
     with django_db_blocker.unblock():

@@ -30,9 +30,6 @@ class UserFactory(factory.django.DjangoModelFactory):
         password = kwargs.pop("password", "senha@123")
         hash_password = kwargs.pop("hash_password", False)
 
-        if hash_password:
-            kwargs["password"] = make_password(password)
-        else:
-            kwargs["password"] = password
+        kwargs["password"] = make_password(password)
 
         return super()._create(model_class, *args, **kwargs)
