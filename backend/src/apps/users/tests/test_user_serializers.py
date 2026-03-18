@@ -105,6 +105,26 @@ class TestUserCreateSerializer:
         )
         assert not s.is_valid()
         assert 'email' in s.errors
+    
+    def test_duplicate_username_is_invalid(self, admin_user):
+        UserFactory(username='dup_user')
+        data = self._valid_data()
+        data['username'] = 'dup_user'
+        s = UserCreateSerializer(
+            data=data,
+            context={'request': make_request(admin_user)},
+        )
+        assert not s.is_valid()
+        assert 'username' in s.errors
+
+    def test_same_email_on_same_user_is_valid(self, admin_user, gerente_user):
+        s = UserUpdateSerializer(
+            gerente_user,
+            data={'email': gerente_user.email},
+            partial=True,
+            context={'request': make_request(admin_user)},
+        )
+        assert s.is_valid(), s.errors
 
     def test_weak_password_is_invalid(self, admin_user):
         data = self._valid_data()
@@ -151,7 +171,7 @@ class TestUserCreateSerializer:
 @pytest.mark.django_db
 class TestUserDetailSerializer:
 
-    def test_returns_expected_fields(self, admin_user):
+    def test_detail_returns_expected_fields(self, admin_user):
         user = UserFactory(groups=['ADMIN'], created_by=admin_user, updated_by=admin_user)
         s = UserDetailSerializer(user)
         expected = {
@@ -331,9 +351,12 @@ class TestUserUpdateSerializer:
 @pytest.mark.django_db
 class TestUserListSerializer:
 
-    def test_returns_expected_fields(self, admin_user):
+    def test_list_returns_expected_fields(self, admin_user):
         s = UserListSerializer(admin_user)
-        expected = {'id', 'first_name', 'last_name', 'email', 'group', 'is_active', 'created_at'}
+        expected = {
+            'id', 'username', 'first_name', 'last_name',
+            'email', 'group', 'is_active', 'created_at'
+        }
         assert expected == set(s.data.keys())
 
     def test_id_is_present(self, admin_user):
