@@ -53,7 +53,7 @@ class TestCheckOverdueInvoices:
         today = timezone.now().date()
         due_date = today - timedelta(days=5)
         customer = CustomerFactory()
-        invoice = InvoiceFactory(
+        InvoiceFactory(
             status='PENDING',
             due_date=due_date,
             customer=customer,
@@ -85,7 +85,7 @@ class TestCheckOverdueInvoices:
         today = timezone.now().date()
         due_date = today - timedelta(days=5)
         customer = CustomerFactory()
-        invoice = InvoiceFactory(
+        InvoiceFactory(
             status='PENDING',
             due_date=due_date,
             customer=customer,
@@ -107,7 +107,7 @@ class TestCheckOverdueInvoices:
         today = timezone.now().date()
         due_date = today - timedelta(days=5)
         customer = CustomerFactory()
-        invoice = InvoiceFactory(
+        InvoiceFactory(
             status='OVERDUE',  # Already overdue
             due_date=due_date,
             customer=customer,

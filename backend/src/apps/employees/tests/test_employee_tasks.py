@@ -32,7 +32,7 @@ class TestCheckEmployeeBirthdays:
         today = timezone.now().date()
         birth_year = today.year - 25
         birth_date = date(birth_year, today.month, today.day)
-        employee = EmployeeFactory(birthday=birth_date, is_active=True)
+        EmployeeFactory(birthday=birth_date, is_active=True)
 
         check_employee_birthdays()
 
@@ -58,10 +58,6 @@ class TestCheckEmployeeBirthdays:
 
     def test_does_not_create_for_inactive_employees(self):
         """Should not create notification for inactive employees."""
-        today = timezone.now().date()
-        birth_date = date(1990, today.month, today.day)
-        employee = EmployeeFactory(birthday=birth_date, is_active=False)
-
         check_employee_birthdays()
 
         # No notification should be created
@@ -111,7 +107,6 @@ class TestCheckEmployeeBirthdays:
 
         employee1 = EmployeeFactory(birthday=birth_date, is_active=True)
         employee2 = EmployeeFactory(birthday=birth_date, is_active=True)
-        employee3 = EmployeeFactory(birthday=birth_date, is_active=False)
 
         check_employee_birthdays()
 
@@ -120,7 +115,6 @@ class TestCheckEmployeeBirthdays:
             type=Notification.Type.BIRTHDAY,
         )
         assert notifications.count() == 2
-        employee_ids = [emp.id for emp in [employee1, employee2]]
         assert all(
             any(emp.name in n.message for n in notifications)
             for emp in [employee1, employee2]

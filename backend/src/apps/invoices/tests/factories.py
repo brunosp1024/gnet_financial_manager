@@ -1,5 +1,4 @@
 import factory
-from datetime import date
 from faker import Faker
 from apps.invoices.models import Invoice
 from apps.customers.tests.factories import CustomerFactory

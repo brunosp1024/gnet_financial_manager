@@ -100,4 +100,4 @@ class TestInvoiceListSerializer:
         assert srl.data['status_display'] == invoice.get_status_display()
         assert str(srl.data['value']) == str(invoice.value)
         assert srl.data['due_date'] == str(invoice.due_date)
-        assert srl.data['paid_at'] == None
+        assert srl.data['paid_at'] is None

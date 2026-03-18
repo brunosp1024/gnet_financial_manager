@@ -1,5 +1,4 @@
 import pytest
-from datetime import date, timedelta
 from django.utils import timezone
 from apps.invoices.models import Invoice
 from apps.invoices.tests.factories import InvoiceFactory

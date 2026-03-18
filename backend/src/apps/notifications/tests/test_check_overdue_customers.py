@@ -33,7 +33,7 @@ def test_management_command_multiple_notifications():
     overdue_days = int(os.getenv('OVERDUE_DAYS', 7))
     # Create invoice with overdue_days overdue
     overdue_date = today - timedelta(days=overdue_days)
-    invoice = InvoiceFactory(
+    InvoiceFactory(
         customer=customer,
         status='OVERDUE',
         due_date=overdue_date,
@@ -52,7 +52,7 @@ def test_management_command_recreates_notification_after_overdue_period():
     overdue_days = int(os.getenv('OVERDUE_DAYS', 7))
     # Create invoice with overdue_days overdue
     overdue_date = today - timedelta(days=overdue_days)
-    invoice = InvoiceFactory(
+    InvoiceFactory(
         customer=customer,
         status='OVERDUE',
         due_date=overdue_date,
@@ -62,7 +62,7 @@ def test_management_command_recreates_notification_after_overdue_period():
     assert notifications.count() == 1
     # Simulate passage of time to trigger new notification after another overdue_days
     overdue_date = overdue_date - timedelta(days=overdue_days)
-    invoice = InvoiceFactory(
+    InvoiceFactory(
         customer=customer,
         status='OVERDUE',
         due_date=overdue_date,
@@ -76,7 +76,7 @@ def test_management_command_no_notification_for_recent_invoice():
     customer = CustomerFactory(is_active=True)
     # Create invoice with 3 days overdue
     overdue_date = today - timedelta(days=3)
-    invoice = InvoiceFactory(
+    InvoiceFactory(
         customer=customer,
         status='OVERDUE',
         due_date=overdue_date,

@@ -1,5 +1,4 @@
 import pytest
-from django.contrib.auth.models import Group
 from rest_framework.test import APIRequestFactory
 
 from apps.users.serializers import (
