@@ -1,44 +1,40 @@
+import os
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from apps.customers.models import Customer
+from apps.invoices.models import Invoice
 from apps.notifications.models import Notification
-
-OVERDUE_DAYS = 7
 
 
 class Command(BaseCommand):
     help = "Cria notificações para clientes com faturas em atraso há mais de 7 dias."
 
     def handle(self, *args, **kwargs):
-        # TODO: quando o modelo Invoice existir, substituir este filtro por:
-        #
-        #   from apps.finance.models import Invoice
-        #   cutoff = timezone.now().date() - timezone.timedelta(days=OVERDUE_DAYS)
-        #   overdue_customer_ids = (
-        #       Invoice.objects
-        #       .filter(due_date__lte=cutoff, paid=False)
-        #       .values_list("customer_id", flat=True)
-        #       .distinct()
-        #   )
-        #   customers = Customer.objects.filter(id__in=overdue_customer_ids, is_active=True)
-        #
-        # Por enquanto, usa o campo is_overdue como proxy.
-        customers = Customer.objects.filter(is_overdue=True, is_active=True)
-
         today = timezone.now().date()
+        overdue_days = int(os.getenv('OVERDUE_DAYS', 7))
+        cutoff = today - timezone.timedelta(days=overdue_days)
         created_count = 0
 
-        for customer in customers:
-            already_notified = customer.notifications.filter(
-                type=Notification.Type.OVERDUE,
-                created_at__date=today,
-            ).exists()
+        overdue_invoices = Invoice.objects.filter(
+            status=Invoice.Status.OVERDUE,
+            due_date__lte=cutoff,
+            customer__is_active=True,
+        ).select_related("customer")
 
-            if not already_notified:
+        for invoice in overdue_invoices:
+            current_overdue_days = (today - invoice.due_date).days
+            message = (
+                f"O cliente {invoice.customer.name} possui fatura em atraso "
+                f"desde {invoice.due_date.strftime('%d/%m/%Y')} (há {current_overdue_days} dias)."
+            )
+            already_notified = Notification.objects.filter(
+                type=Notification.Type.OVERDUE,
+                message=message,
+            ).exists()
+            very_overdue = current_overdue_days > overdue_days
+            if not already_notified or (very_overdue and current_overdue_days % overdue_days == 0):
                 Notification.objects.create(
-                    customer=customer,
                     type=Notification.Type.OVERDUE,
-                    message=f"O cliente {customer.name} possui fatura(s) em atraso há mais de {OVERDUE_DAYS} dias.",
+                    message=message,
                 )
                 created_count += 1
 
