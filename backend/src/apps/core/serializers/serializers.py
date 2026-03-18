@@ -20,7 +20,7 @@ class PersonSerializer(AuditSerializerMixin):
 
     def validate_phone(self, value):
         if not value:
-            return value
+            return None
 
         validate_phone_util(value)
 

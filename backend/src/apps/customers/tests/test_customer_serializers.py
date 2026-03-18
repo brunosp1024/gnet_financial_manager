@@ -84,6 +84,28 @@ class TestCustomerCreateUpdateSerializer:
         s = CustomerCreateUpdateSerializer(data=data, context={'request': make_request(admin_user)})
         assert s.is_valid(), s.errors
 
+    def test_blank_phone_is_normalized_to_null(self, admin_user):
+        data = {'name': 'Sem Telefone', 'start_date': '2024-01-01', 'phone': ''}
+        s = CustomerCreateUpdateSerializer(data=data, context={'request': make_request(admin_user)})
+        assert s.is_valid(), s.errors
+        customer = s.save()
+        assert customer.phone is None
+
+    def test_multiple_customers_can_be_saved_with_blank_phone(self, admin_user):
+        first = CustomerCreateUpdateSerializer(
+            data={'name': 'Cliente 1', 'start_date': '2024-01-01', 'phone': ''},
+            context={'request': make_request(admin_user)},
+        )
+        second = CustomerCreateUpdateSerializer(
+            data={'name': 'Cliente 2', 'start_date': '2024-01-01', 'phone': ''},
+            context={'request': make_request(admin_user)},
+        )
+
+        assert first.is_valid(), first.errors
+        assert second.is_valid(), second.errors
+        assert first.save().phone is None
+        assert second.save().phone is None
+
     def test_audit_updated_by_is_set_on_update(self, admin_user, financeiro_user):
         c = CustomerFactory()
         data = {'name': 'Nome Atualizado'}
