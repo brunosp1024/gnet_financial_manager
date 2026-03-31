@@ -21,7 +21,7 @@ def pagination():
 
 class TestStandardPaginationConfig:
     def test_default_page_size(self, pagination):
-        assert pagination.page_size == 20
+        assert pagination.page_size == 10
 
     def test_page_size_query_param(self, pagination):
         assert pagination.page_size_query_param == "page_size"
@@ -36,7 +36,7 @@ class TestStandardPaginationBehavior:
         request = make_request(rf)
         result = pagination.paginate_queryset(items, request)
 
-        assert result == list(range(20))
+        assert result == list(range(10))
 
     def test_custom_page_size_via_query_param(self, pagination, rf):
         items = list(range(50))
@@ -57,7 +57,7 @@ class TestStandardPaginationBehavior:
         request = make_request(rf, params={"page": "2"})
         result = pagination.paginate_queryset(items, request)
 
-        assert result == list(range(20, 40))
+        assert result == list(range(10, 20))
 
     def test_get_paginated_response_contains_count(self, pagination, rf):
         items = list(range(50))

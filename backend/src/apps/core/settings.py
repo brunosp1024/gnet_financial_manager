@@ -131,7 +131,7 @@ REST_FRAMEWORK = {
     ],
     # Default pagination settings
     'DEFAULT_PAGINATION_CLASS': 'apps.core.pagination.standard_pagination.StandardPagination',
-    'PAGE_SIZE': 20,
+    'PAGE_SIZE': 10,
     # Throttling
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
