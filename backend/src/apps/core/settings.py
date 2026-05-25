@@ -7,10 +7,8 @@ from celery.schedules import crontab
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Load environment from backend/.env first (new app layout),
-# then allow a local override in backend/src/.env if present.
+# Load environment from backend/.env
 load_dotenv(BASE_DIR.parent / '.env')
-load_dotenv(BASE_DIR / '.env')
 
 # Initialize general settings
 SECRET_KEY = os.getenv('SECRET_KEY')
