@@ -25,7 +25,7 @@ class CustomerViewSet(ModelViewSet):
     }
 
     def get_queryset(self):
-        return Customer.objects.annotate(
+        return self.queryset.annotate(
             is_overdue=Exists(
                 Invoice.objects.filter(
                     customer=OuterRef("pk"),
